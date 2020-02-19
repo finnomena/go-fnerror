@@ -1,7 +1,7 @@
 # FINNOMENA ERROR
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/finnomena/go-fnerror/blob/master/LICENSE)	[![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](http://godoc.org/github.com/finnomena/go-fnerror)
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/finnomena/go-fnerror/blob/master/LICENSE) [![GoDoc](http://img.shields.io/badge/go-documentation-blue.svg?style=flat-square)](https://pkg.go.dev/github.com/finnomena/go-fnerror?tab=doc)
 
-FINNOMENA Error  is an extension of standard golang error which provide more flexibility to use with additional information about an error (Ex. stack tracing)
+FINNOMENA Error is an extension of standard golang error which provides more flexibility to use with additional information about an error (Ex. stack tracing)
 
 ### Prerequisites
 
