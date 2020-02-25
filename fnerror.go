@@ -26,7 +26,7 @@ const (
 	StatusValidation
 	StatusTimeout
 	StatusUnprocessableEntity
-	StatusTooManyRequest
+	StatusTooManyRequests
 	StatusPayloadTooLarge
 )
 

@@ -50,12 +50,21 @@ func main() {
 	unexpectedErr2 := new(fnerror.UnexpectedError) //allocate with new only for type assertion
 	forbiddenErr := new(fnerror.ForbiddenError)
 
+	fmt.Println(errors.Is(notFoundErr, standardErr))
+	//false --> has no standard error (compare to a value)
+	fmt.Println(errors.Is(notFoundErr, unexpectedErr))
+	//true --> has unexpectedErr
+	fmt.Println(errors.Is(notFoundErr, unexpectedErr2))
+	//false --> doesn't has unexpectedErr2
+	fmt.Println(errors.Is(notFoundErr, forbiddenErr))
+	//false --> doesnt has forbiddenErr
+
 	fmt.Println(errors.As(notFoundErr, &standardErr))
 	//true --> contains error type (compare to a type)
 	fmt.Println(errors.As(notFoundErr, &unexpectedErr2))
-	//true --> contains UnexpectedError type (compare to a type)
+	//true --> contains UnexpectedError type
 	fmt.Println(errors.As(notFoundErr, &forbiddenErr))
-	//false --> contains ForbiddenError type (compare to a type)
+	//false --> contains ForbiddenError type
 }
 
 ```
