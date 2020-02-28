@@ -26,7 +26,7 @@ const (
 	StatusValidation
 	StatusTimeout
 	StatusUnprocessableEntity
-	StatusTooManyRequest
+	StatusTooManyRequests
 	StatusPayloadTooLarge
 )
 
@@ -53,15 +53,37 @@ func getFrame() runtime.Frame {
 }
 
 func getTrace(msg string, frame runtime.Frame) string {
-	trace := fmt.Sprintf("\n%s() \"%s\"\n%s:%d", frame.Function, msg, frame.File, frame.Line)
+	trace := fmt.Sprintf(
+		"Message: \"%s\"\nFrom: %s()\n --- at %s:%d",
+		msg, frame.Function, frame.File, frame.Line)
 	return trace
 }
 
 //GetChainTrace Get Errors trace
 func GetChainTrace(e Apperror) string {
+	chainTrace := ""
+	cause := ""
 	trace := e.GetTrace()
-	for childErr := e.Unwrap(); childErr != nil; childErr = childErr.(Apperror).Unwrap() {
-		trace = trace + "\n" + childErr.(Apperror).GetTrace()
+	err := e.Unwrap()
+	for {
+		if err == nil {
+			break
+		}
+		apperr, ok := err.(Apperror)
+		if ok {
+			trace += "\n" + apperr.GetTrace()
+		} else {
+			cause += err.Error()
+			break
+		}
+		err = apperr.Unwrap()
 	}
-	return trace
+
+	if cause == "" {
+		chainTrace = trace
+	} else {
+		cause = fmt.Sprintf("Original Error: \"%s\"", cause)
+		chainTrace = fmt.Sprintf("%s\n%s", trace, cause)
+	}
+	return chainTrace
 }
