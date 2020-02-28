@@ -6,13 +6,13 @@ import (
 
 //NewUnexpectedError return a UnexpectedError that has error message msg and child error err.
 //Noted that msg should be empty string("") as it is not the best practice to expose the unhandled message to the caller.
-func NewUnexpectedError(msg string, err Apperror) *UnexpectedError {
+func NewUnexpectedError(msg string, err error) *UnexpectedError {
 	fne := newFnerror(msg, err, http.StatusInternalServerError, StatusUnexpected)
 	return &UnexpectedError{fne}
 }
 
 //NewServiceUnavailableError return a ServiceUnavailableError that has error message msg and child error err.
-func NewServiceUnavailableError(msg string, err Apperror) *ServiceUnavailableError {
+func NewServiceUnavailableError(msg string, err error) *ServiceUnavailableError {
 	fne := newFnerror(msg, err, http.StatusServiceUnavailable, StatusServiceUnavailable)
 	return &ServiceUnavailableError{fne}
 }

@@ -5,49 +5,49 @@ import (
 )
 
 //NewNotFoundError return a NotFoundError that has error message msg and child error err.
-func NewNotFoundError(msg string, err Apperror) *NotFoundError {
+func NewNotFoundError(msg string, err error) *NotFoundError {
 	fne := newFnerror(msg, err, http.StatusNotFound, StatusNotFound)
 	return &NotFoundError{fne}
 }
 
 //NewPayloadTooLargeError return a PayloadTooLargeError that has error message msg and child error err.
-func NewPayloadTooLargeError(msg string, err Apperror) *PayloadTooLargeError {
+func NewPayloadTooLargeError(msg string, err error) *PayloadTooLargeError {
 	fne := newFnerror(msg, err, http.StatusRequestEntityTooLarge, StatusPayloadTooLarge)
 	return &PayloadTooLargeError{fne}
 }
 
 //NewTimoutError return a TimeoutError that has error message msg and child error err.
-func NewTimoutError(msg string, err Apperror) *TimeoutError {
+func NewTimoutError(msg string, err error) *TimeoutError {
 	fne := newFnerror(msg, err, http.StatusRequestTimeout, StatusTimeout)
 	return &TimeoutError{fne}
 }
 
 //NewValidationError return a ValidationError that has error message msg and child error err.
-func NewValidationError(msg string, err Apperror) *ValidationError {
+func NewValidationError(msg string, err error) *ValidationError {
 	fne := newFnerror(msg, err, http.StatusBadRequest, StatusValidation)
 	return &ValidationError{fne}
 }
 
 //NewMissingRequiredParamsError return a MissingRequiredParamsError that has error message msg and child error err.
-func NewMissingRequiredParamsError(msg string, err Apperror) *MissingRequiredParamsError {
+func NewMissingRequiredParamsError(msg string, err error) *MissingRequiredParamsError {
 	fne := newFnerror(msg, err, http.StatusBadRequest, StatusMissingRequiredParameter)
 	return &MissingRequiredParamsError{fne}
 }
 
 //NewUnprocessableEntityError return an UnprocessableEntityError that has error message msg and child error err.
-func NewUnprocessableEntityError(msg string, err Apperror) *UnprocessableEntityError {
+func NewUnprocessableEntityError(msg string, err error) *UnprocessableEntityError {
 	fne := newFnerror(msg, err, http.StatusUnprocessableEntity, StatusUnprocessableEntity)
 	return &UnprocessableEntityError{fne}
 }
 
 //NewTooManyRequestError return a TooManyRequestError that has error message msg and child error err.
-func NewTooManyRequestError(msg string, err Apperror) *TooManyRequestError {
+func NewTooManyRequestError(msg string, err error) *TooManyRequestError {
 	fne := newFnerror(msg, err, http.StatusTooManyRequests, StatusTooManyRequests)
 	return &TooManyRequestError{fne}
 }
 
 //NewBadRequestError return a BadRequestError that has error message msg and child error err.
-func NewBadRequestError(msg string, err Apperror) *BadRequestError {
+func NewBadRequestError(msg string, err error) *BadRequestError {
 	fne := newFnerror(msg, err, http.StatusBadRequest, StatusBadRequest)
 	return &BadRequestError{fne}
 }

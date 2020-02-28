@@ -5,7 +5,7 @@ import (
 	"runtime"
 )
 
-func newFnerror(msg string, err Apperror, errCode, httpCode int) *finerror {
+func newFnerror(msg string, err error, httpCode, errCode int) *finerror {
 	return &finerror{
 		msg:      msg,
 		err:      err,
@@ -17,7 +17,7 @@ func newFnerror(msg string, err Apperror, errCode, httpCode int) *finerror {
 
 type finerror struct {
 	msg      string
-	err      Apperror
+	err      error
 	frame    runtime.Frame
 	errCode  int
 	httpCode int
