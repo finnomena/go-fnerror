@@ -5,6 +5,7 @@ import (
 	"runtime"
 )
 
+//NewFnerror return a custom FinnoError error which implement fnerror.Apperror
 func NewFnerror(msg string, err error, httpCode int, errCode string) *FinnoError {
 
 	return &FinnoError{
