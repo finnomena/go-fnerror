@@ -5,8 +5,10 @@ import (
 	"runtime"
 )
 
-func newFnerror(msg string, err error, httpCode, errCode int) *finerror {
-	return &finerror{
+//NewFnerror return a custom FinnoError error which implement fnerror.Apperror
+func NewFnerror(msg string, err error, httpCode int, errCode string) *FinnoError {
+
+	return &FinnoError{
 		msg:      msg,
 		err:      err,
 		frame:    getFrame(),
@@ -15,15 +17,15 @@ func newFnerror(msg string, err error, httpCode, errCode int) *finerror {
 	}
 }
 
-type finerror struct {
+type FinnoError struct {
 	msg      string
 	err      error
 	frame    runtime.Frame
-	errCode  int
+	errCode  string
 	httpCode int
 }
 
-func (e *finerror) Error() string {
+func (e *FinnoError) Error() string {
 	if e.msg == "" {
 		return http.StatusText(e.GetHTTPCode())
 	}
@@ -31,20 +33,20 @@ func (e *finerror) Error() string {
 }
 
 //GetCode return the application error code.
-func (e *finerror) GetCode() int {
+func (e *FinnoError) GetCode() string {
 	return e.errCode
 }
 
 //GetHTTPCode return http response status code which related to the error.
-func (e *finerror) GetHTTPCode() int {
+func (e *FinnoError) GetHTTPCode() int {
 	return e.httpCode
 }
 
-func (e *finerror) GetTrace() string {
+func (e *FinnoError) GetTrace() string {
 	return getTrace(e.Error(), e.frame)
 }
 
 //Unwrap return the child error of the error, mostly used for extracting errors chain.
-func (e *finerror) Unwrap() error {
+func (e *FinnoError) Unwrap() error {
 	return e.err
 }
